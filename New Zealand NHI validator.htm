@@ -1,0 +1,58 @@
+<script language="javascript">
+/*
+New Zealand NHI validator, v202306
+Author: Jason Lee, jason.lee@auckland.ac.nz
+*/
+function isNHIValid(nhi) {
+    if (typeof nhi !== 'string' || nhi.length !== 7) {
+        return false;
+    }
+
+    const alphabetConversionTable = {
+        'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5,
+        'F': 6, 'G': 7, 'H': 8, 'J': 9, 'K': 10,
+        'L': 11, 'M': 12, 'N': 13, 'P': 14, 'Q': 15,
+        'R': 16, 'S': 17, 'T': 18, 'U': 19, 'V': 20,
+        'W': 21, 'X': 22, 'Y': 23, 'Z': 24
+    };
+
+    let sum = 0;
+    sum += alphabetConversionTable[nhi[0]] * 7;
+    sum += alphabetConversionTable[nhi[1]] * 6;
+    sum += alphabetConversionTable[nhi[2]] * 5;
+    sum += parseInt(nhi[3]) * 4;
+    sum += parseInt(nhi[4]) * 3;
+
+    if (!alphabetConversionTable[nhi[0]] || !alphabetConversionTable[nhi[1]] || !alphabetConversionTable[nhi[2]]) {
+        return false; 
+    }
+
+    if (nhi[5].match(/\d/)) { 
+        sum += parseInt(nhi[5]) * 2;
+    } else if (nhi[5].match(/[A-Z]/) && alphabetConversionTable[nhi[5]]) { 
+        sum += alphabetConversionTable[nhi[5]] * 2;
+    } else {
+        return false; 
+    }
+
+    if (nhi[6].match(/[0-9]/)) { 
+        let remainder = sum % 11;
+        let checkDigit = 11 - remainder;
+        if (checkDigit === 11) {
+            return false; 
+        }
+        if (checkDigit === 10) {
+            checkDigit = 0; 
+        }
+        return checkDigit === parseInt(nhi[6]);
+    } else if (nhi[6].match(/[A-Z]/)) { 
+        let remainder = sum % 23;
+        let letterCheckDigit = String.fromCharCode(65 + (23 - remainder - 1));
+        return letterCheckDigit === nhi[6];
+    }
+
+    return false;
+}
+
+
+</script>
