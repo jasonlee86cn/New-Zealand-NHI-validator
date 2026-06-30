@@ -1,7 +1,7 @@
 <?php
 /*
 New Zealand NHI validator, v202306
-Author: Jason Lee, jason.lee@auckland.ac.nz
+
 Usage: ?nhi=nhi
 */
 function isNHIValid($nhi) {
