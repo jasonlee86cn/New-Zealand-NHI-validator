@@ -4,8 +4,7 @@ New Zealand NHI validator
 New Zealand NHI validator, v202306
 
 
-Online example: 
-https://jasonlee.online/New_Zealand_NHI_Vaildator/
+
 
 NHI Number Validator (PHP,JavaScript)
 ====================================
