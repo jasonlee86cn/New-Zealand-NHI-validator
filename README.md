@@ -2,7 +2,7 @@
 New Zealand NHI validator
 
 New Zealand NHI validator, v202306
-Author: Jason Lee, jason.lee@auckland.ac.nz
+
 
 Online example: 
 https://jasonlee.online/New_Zealand_NHI_Vaildator/
